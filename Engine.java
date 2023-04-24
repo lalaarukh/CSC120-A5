@@ -11,9 +11,9 @@ public class Engine {
     }
     //constructor
     public Engine(FuelType f, double fuel){
-    this.f = f;
-    this.currentFuelLevel = fuel;
-    this.maxFuelLevel = fuel;
+        this.f = f;
+        this.currentFuelLevel = fuel;
+        this.maxFuelLevel = fuel;
     }
 
     //method
@@ -23,17 +23,14 @@ public class Engine {
     }
 
     public void go(){
-        //decrease current fuel level and print remaining fuel if >0 else runtimeexception
-        if(this.currentFuelLevel>0){
-            this.currentFuelLevel -= 7;
+        //decrease current fuel level and print remaining fuel if >=0 else runtimeexception
+        if(this.currentFuelLevel >= 5){
+            //assume 5 is the fuel consumed every time this method is called
+            this.currentFuelLevel -= 5;
             System.out.println("The train has" + currentFuelLevel + "remaining.");
         } else {
             throw new RuntimeException("Out of Fuel!");
         }
         
-    }
-
-    public static void main (String [] args){
-        Engine myengine = new Engine(FuelType.ELECTRIC, 100.0);
     }
 }

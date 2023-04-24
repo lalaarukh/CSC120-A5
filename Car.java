@@ -2,9 +2,10 @@ import java.util.ArrayList;
 //will be used as a container for `Passenger` objects
 public class Car {
 
-    private ArrayList<Passenger> passengersOnboard;
+    public ArrayList<Passenger> passengersOnboard;
     private int currentCapacity;
     private int maxCapacity; 
+    Passenger p;
 
     public Car(Passenger p, int seats){
         this.p = p;
@@ -17,24 +18,34 @@ public class Car {
     }
 
     public int seatsRemaining(){
-        seatsRemaining = maxCapacity - currentCapacity
+        int seatsRemaining = maxCapacity - currentCapacity;
+        return seatsRemaining;
     }
 
-    public void addPassenger(Passenger){
+    public void addPassenger(Passenger p){
         // make sure seats are available before adding passengers, else, runtime exception
-        if (seatsRemaining >0){
-            //add passenger
+        if (this.passengersOnboard.size() < maxCapacity && !this.passengersOnboard.contains(p)){ 
+            this.passengersOnboard.add(p);
         } else {
             throw new RuntimeException("No more seats!");
         }
     }
 
-    public void removePassenger(Passenger){
+    public void removePassenger(Passenger p){
         // make sure passenger is on board before removing them, else, runtime exception
+        if(this.passengersOnboard.contains(p)){
+            this.passengersOnboard.remove(p);
+        } else {
+            throw new RuntimeException("Passenger not on board");
+        }
     }
 
     public void printManifest(){
         //print all passengers on board
+        System.out.println("Passengers on board:");
+        for (Passenger p : passengersOnboard) {
+            System.out.println(p.getName());
+        }
     }
 
 }
